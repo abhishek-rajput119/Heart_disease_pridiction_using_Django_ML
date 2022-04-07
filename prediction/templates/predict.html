@@ -1,0 +1,294 @@
+<!DOCTYPE html> {% load static %}
+
+<html>
+
+<head>
+    <title>Heart Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="./toggle.js">
+    </script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <script>
+    jQuery(function(){
+       jQuery('#btn2').click();
+    });
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet" />
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/now-ui-kit.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/medium-editor.min.css' %}" rel="stylesheet">
+    <!--//fonts-->
+    <style>
+        button[type=submit] {
+            display: block;
+            color: #fff;
+            margin: 0 auto;
+            margin-top: 2em;
+            padding: 9px 30px;
+            font-size: 1.04em;
+            cursor: pointer;
+            border: 2px solid #ff9900;
+            outline: none;
+            background: #ff9900;
+            font-weight: 500;
+            font-family: 'Roboto', sans-serif;
+            transition: 0.5s all ease;
+            -webkit-transition: 0.5s all ease;
+            -moz-transition: 0.5s all ease;
+            -o-transition: 0.5s all ease;
+            -ms-transition: 0.5s all ease;
+        }
+        
+        button[type=submit]:hover {
+            background: #023e99;
+            border-color: #023e99;
+            color: #fefefe;
+            transition: 0.5s all ease;
+            -webkit-transition: 0.5s all ease;
+            -moz-transition: 0.5s all ease;
+            -o-transition: 0.5s all ease;
+            -ms-transition: 0.5s all ease;
+        }
+    </style>
+</head>
+
+<body style="background-image:{% static 'images/1.jpg'}">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
+     <symbol id="people-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  </symbol>
+</svg>
+    <!--background-->
+    <nav class="navbar navbar-expand-lg navbar-transparent">
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <ul class="navbar-nav nav-tabs">
+
+                    <!--                      <li class="nav-item"><a href="{% url 'accounts:profile' pk=user_id %}" class="btn btn-neutral">Profile</a></li>-->
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:profile' pk=user_id %}" class="nav-link text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+</svg>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:logout' %}" class="nav-link text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                            <path d="M7.5 1v7h1V1h-1z"/>
+                            <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="color:white;">Predict your Heart disease</h1>
+    <div class="bg-agile">
+        <div class="book-appointment">
+            <h2>Medical Information</h2>
+
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="left-agileits-w3layouts same">
+                    <div class="gaps">
+                        <p>Age
+                            <p>
+                                {{form.age}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Gender</p>
+                        {{form.sex}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Chest Pain</p>
+                        {{form.cp}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Resting BP</p>
+                        {{form.resting_bp}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Serum Cholestrol</p>
+                        {{form.serum_cholesterol}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Fasting Blood Sugar</p>
+                        {{form.fasting_blood_sugar}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Resting Electrocardiographic Result</p>
+                        {{form.resting_ecg}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Maximum Heart Rate</p>
+                        {{form.max_heart_rate}}
+                    </div>
+
+
+
+                </div>
+
+                <div class="right-agileinfo same">
+
+                    <div class="gaps">
+                        <p>Excercise Induced Angina</p>
+                        {{form.exercise_induced_angina}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>ST Depression</p>
+                        {{form.st_depression}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Slope of the peak exercise ST segment </p>
+                        {{form.st_slope}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Number of major vessels (0-3) colored by flourosopy</p>
+                        {{form.number_of_vessels}}
+                    </div>
+
+                    <div class="gaps">
+                        <p>Thalium Scan Results</p>
+                        {{form.thallium_scan_results}}
+                    </div>
+
+                </div>
+
+                <div class="clear"></div>
+                <button id="btn1" type="submit" value="Predict" class="btn btn-primary">Predict</button>>
+
+            </form>
+
+            {% for msg in messages %}
+                    <button hidden="hidden" id="btn2" type="submit" class="btn btn-primary"
+                            value="Predict" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Predict
+                    </button>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Prediction Result</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if predicted %}
+                    <div class="card" role="alert">
+                        <div class="header-main">
+                            {% if result %}
+                            <h4 class="table-danger text-center">You have a risk of heart disease</h4>
+                            {% else %}
+                            <h4 class="table-success  text-center">You do not have a risk of heart disease</h4>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive justify-content-center">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Algorithm</th>
+                                            <th>Risk of Heart Disease</th>
+                                            <th>Accuracy</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="{{colors.LR}}">
+                                            <td>Logistic Regression</td>
+                                            <td>{{predictions.LogisticRegression}}</td>
+                                            <td>{{accuracies.LogisticRegression}}%</td>
+                                        </tr>
+                                        <tr class={{colors.SVC}}>
+                                            <td>Support Vector Classifier</td>
+                                            <td>{{predictions.SVC}}</td>
+                                            <td>{{accuracies.SVC}}%</td>
+                                        </tr>
+                                        <tr class={{colors.NB}}>
+                                            <td>Naive Bayes</td>
+                                            <td>{{predictions.NaiveBayes}}</td>
+                                            <td>{{accuracies.NaiveBayes}}%</td>
+                                        </tr>
+                                        <tr class={{colors.DT}}>
+                                            <td>Decision Tree</td>
+                                            <td>{{predictions.DecisionTree}}</td>
+                                            <td>{{accuracies.DecisionTree}}%</td>
+                                        </tr>
+
+
+                                        <tr class={{colors.KNN}}>
+                                            <td>KNN</td>
+                                            <td>{{predictions.KNN}}</td>
+                                            <td>{{accuracies.KNN}}%</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--copyright-->
+
+    <!--//copyright-->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <!-- Calendar -->
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- //Calendar -->
+
+</body>
+
+</html>
