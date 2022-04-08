@@ -9,7 +9,7 @@
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
     <title>Heart disease prediction</title>
 </head>
-<body style="background-image: url('{% static 'images/dani.jpg' %}')">
+<body style="background-image: url('{% static 'images/1.jpg' %}')">
 	<!-- main -->
 	<div class="agileits-main">
 	<div class="w3top-nav">
@@ -29,11 +29,6 @@
 		</div>
 
     <div class="header-main">
-      {%if user.is_authenticated %}
-        <h2>You are already logged in !!</h2>
-        <button class="btn btn-neutral"><a href="{% url 'accounts:logout'%}">Logout</a></button>
-
-      {%else%}
     <h2>Login Now</h2>
 			<div class="header-bottom">
 				<div class="header-right w3agile">
@@ -59,7 +54,6 @@
 
 	</div>
 	<!-- //main -->
-  {% endif %}
 </body>
 
 </html>
